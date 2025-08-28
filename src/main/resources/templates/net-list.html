@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Net List</title>
+</head>
+<body>
+<h1>Net List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>status</th>
+        <th>estimatedSize</th>
+        <th>gpsLocation</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="net : ${nets}">
+        <td th:text="${net.status}"></td>
+        <td th:text="${net.estimatedSize}"></td>
+        <td th:text="${net.gpsLocation}"></td>
+        <td> <button th:action="@{/nets/upd-net-form}" type="submit"> Update this Entry </button></td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/nets/net-form}" method="get">
+    <button type="submit">Neue Form öffnen</button>
+</form>
+</body>
+</html>
