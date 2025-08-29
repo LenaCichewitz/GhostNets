@@ -6,14 +6,15 @@
 </head>
 <body>
 <h1>Login</h1>
-<form th:action="@{/users/add-contact}" th:object="${contact-info}" method="post">
+<form th:action="@{/users/add-contact}" th:object="${contact}" method="post">
     <label for="name">name</label>
     <input type="text" id="name" name="name" th:field="*{name}" />
     <label for="lastname">lastname</label>
     <input type="text" id="lastname" name="lastname" th:field="*{lastname}" />
     <label for="tel">tel</label>
-    <input type="tel" id="tel" name="tel" th:field="*{tel}" />
+    <input type="tel" id="tel" name="tel" th:field="*{telephone}" />
     <button type="submit">Save</button>
 </form>
+<button th:action="@{/nets/net-list-form}" type="submit"> EXIT</button>
 </body>
 </html>
