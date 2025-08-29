@@ -29,7 +29,8 @@ public class NetController {
     }
     @PostMapping("/add-net")
     public String addNet(@ModelAttribute Net net) {
-        netService.saveNet(net);
+        int netId = netService.saveNet(net);
+
         return "redirect:/users/show-contact-form";
         // return "redirect:/nets/net-list";
     }

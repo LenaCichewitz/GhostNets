@@ -5,6 +5,7 @@ import com.ipwa02.ghost_nets.Model.Net;
 import com.ipwa02.ghost_nets.Model.User;
 import com.ipwa02.ghost_nets.Service.ContactService;
 import com.ipwa02.ghost_nets.Service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,9 +49,11 @@ public class UserController {
         return "contact-form";
     }
     @PostMapping("/add-contact")
-    public String addContact(@ModelAttribute Contact contact) {
+    public String addContact(@ModelAttribute Contact contact, HttpSession httpSession) {
+        System.out.println("add contact" + httpSession.getAttribute("netId"));
         contactService.addContact(contact);
         return "redirect:/nets/net-list";
     }
+
 }
 

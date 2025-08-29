@@ -17,7 +17,8 @@ public class NetService {
         return netRepository.findAll();
     }
 
-    public void saveNet(Net net) {
-        netRepository.save(net);
+    public int saveNet(Net net) {
+       Net savedNet =   netRepository.save(net);
+        return savedNet.getId();
     }
 }
