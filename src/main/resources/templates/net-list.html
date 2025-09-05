@@ -15,11 +15,16 @@
 
     </thead>
     <tbody>
+    <tbody>
     <tr th:each="net : ${nets}">
         <td th:text="${net.status}"></td>
         <td th:text="${net.estimatedSize}"></td>
         <td th:text="${net.gpsLocation}"></td>
-        <td> <button th:action="@{/nets/upd-net-form}" type="submit"> Update this Entry </button></td>
+        <td th:if="${loggedIn}">
+            <form th:action="@{/nets/edit/{id}(id=${net.id})}" method="get">
+                <button type="submit">Update this Entry</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

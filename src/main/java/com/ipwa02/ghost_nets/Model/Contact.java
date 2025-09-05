@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     private Long telephone;
     private String lastname;
@@ -38,11 +38,11 @@ public class Contact {
         return name;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 }

@@ -17,6 +17,7 @@ public class Net {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     public Statuses getStatus() {
         return status;
     }
