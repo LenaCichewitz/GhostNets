@@ -7,6 +7,7 @@ import com.ipwa02.ghost_nets.Service.ContactService;
 import com.ipwa02.ghost_nets.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,24 +25,10 @@ public class UserController {
     @Autowired
     ContactService contactService;
 
-    @GetMapping("/login-form")
+    @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("user", new User());
         return "login-form";
-    }
-    @PostMapping("/login")
-    public String login(@ModelAttribute User user, Model model) {
-        String errorMsg = userService.loginValidation(user.getUsername());
-        if (errorMsg!=null){
-            model.addAttribute("errorMessage",errorMsg);
-            return "login-form";
-        }
-        errorMsg = userService.login(user.getUsername(),user.getPassword()); /// PW SICHERUNG EINBAUEN TODO
-        if(errorMsg!=null){
-            model.addAttribute("errorMessage", errorMsg);
-            return "login-form";
-        }
-        return "redirect:/nets/net-list";
     }
     @GetMapping("/show-contact-form")
     public String showContactForm(Model model) {
@@ -53,6 +40,12 @@ public class UserController {
         System.out.println("add contact" + httpSession.getAttribute("netId"));
         contactService.addContact(contact);
         return "redirect:/nets/net-list";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        SecurityContextHolder.clearContext();
+        session.invalidate();
+        return "redirect:/login-form"; //
     }
 
 }
