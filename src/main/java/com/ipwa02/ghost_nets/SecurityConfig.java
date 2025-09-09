@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 "/users/*",
                                 "/nets/add-net",
                                 "/users/show-contact-form/*",
+                                "/nets/net-list",
                                 "/users/add-contact").permitAll()
                         .anyRequest().authenticated()
                 )

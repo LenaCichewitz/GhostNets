@@ -1,6 +1,7 @@
 package com.ipwa02.ghost_nets.Controller;
 
 import com.ipwa02.ghost_nets.Model.Net;
+import com.ipwa02.ghost_nets.Model.User;
 import com.ipwa02.ghost_nets.Service.NetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -36,7 +37,15 @@ public class NetController {
         return "edit-net-form";
     }
 
-    @PostMapping("/add-net")
+    @GetMapping("/net-rescue/{id}")
+    public String setNetBerger(@PathVariable("id") int id,Model model) {
+        Net net = netService.getNetById(id);
+        model.addAttribute("net", net);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        netService.setBergerForNet(user, net);
+
+        return "redirect:/nets/net-list";
+    }
     public String addNet(@ModelAttribute Net net) {
         int netId = netService.saveNet(net);
         System.out.println("netId: " + netId);

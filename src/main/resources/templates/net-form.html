@@ -9,7 +9,7 @@
     <label for="status">Status:    </label>
     <select id="status" th:field="*{status}">
         <option th:each="statusOpt : ${T(com.ipwa02.ghost_nets.Statuses).values()}"
-            th:value="${statusOpt}" th:text="${statusOpt}"></option>
+            th:value="${statusOpt}" th:readonly th:text="${statusOpt}"></option>
     </select>
     <label for="estimatedSize">Estimated Size:</label>
     <input type="text" id="estimatedSize" th:field="*{estimatedSize}" required/>

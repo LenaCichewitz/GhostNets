@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+        <link rel='stylesheet' type='text/css'
+              href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.63.0/maps/maps.css'>
+        <style>
+            #map {
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+       <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.63.0/maps/maps-web.min.js'></script>
 </head>
 <body>
 <h1>Welcome to the Home Page</h1>
@@ -14,7 +23,17 @@
 </form>
 <form th:action="@{/users/login}" method="get">
     <button type="submit">Login</button>
-
 </form>
+
+<div id='map' class='map'></div>
+<script th:inline="javascript">
+    var map = tt.map({
+        key: [[${apikey}]], // this will be replaced by Thymeleaf at runtime
+        container: 'map',
+        style: 'tomtom://vector/1/basic-main'
+    });
+    map.addControl(new tt.FullscreenControl());
+    map.addControl(new tt.NavigationControl());
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Login</h1>
+<h1>Please leave your Contact Info</h1>
 <form th:action="@{/users/add-contact}" th:object="${contact}" method="post">
     <input type="hidden" name="netId" th:value="${net.id}"/>
     <label for="name">name</label>
@@ -16,6 +16,8 @@
     <input type="tel" id="tel" name="tel" th:field="*{telephone}" />
     <button type="submit">Save</button>
 </form>
-<button th:action="@{/nets/net-list-form}" type="submit"> EXIT</button>
+<form th:action="@{/nets/net-list}" method="get">
+    <button type="submit">Exit</button>
+</form>
 </body>
 </html>

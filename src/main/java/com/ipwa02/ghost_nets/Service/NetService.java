@@ -2,6 +2,7 @@ package com.ipwa02.ghost_nets.Service;
 
 import com.ipwa02.ghost_nets.Model.Contact;
 import com.ipwa02.ghost_nets.Model.Net;
+import com.ipwa02.ghost_nets.Model.User;
 import com.ipwa02.ghost_nets.Repository.NetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class NetService {
         return netRepository.findAll();
     }
 
+    public List<Net> getAllNetsByUser(User user) {
+        return netRepository.findAllByBergerId(user.getId());
+    }
     public int saveNet(Net net) {
        Net savedNet =   netRepository.save(net);
        return savedNet.getId();
@@ -32,6 +36,10 @@ public class NetService {
     }
     public void addContactToNet(Contact contact, Net net) {
         net.setContactId(contact.getId());
+        this.updateNet(net);
+    }
+    public void setBergerForNet(User user, Net net) {
+        net.setBergerId(user.getId());
         this.updateNet(net);
     }
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Add Net</title>
+    <title>Edit Net</title>
 </head>
 <body>
-<h1>Add Ghost Net</h1>
+<h1>Edit Ghost Net</h1>
 <form th:action="@{/nets/update}" th:object="${net}" method="post">
     <input type="hidden" th:field="*{id}"/>
     <label for="status">Status:    </label>
@@ -16,8 +16,10 @@
     <input type="text" id="estimatedSize" th:field="*{estimatedSize}" required/>
     <label for="gpsLocation">gpsLocation:</label>
     <input type="text" id="gpsLocation" th:field="*{gpsLocation}" required/>
-
     <button type="submit">Save</button>
+</form>
+<form th:action="@{/nets/net-list}" method="get">
+    <button type="submit">Exit</button>
 </form>
 </body>
 </html>
