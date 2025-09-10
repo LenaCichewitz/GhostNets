@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/users/login",
                                 "/nets/net-form",
                                 "/",
+                                "users/add-contact",
                                 "/users/show-contact-form",
                                 "/users/*",
                                 "/nets/add-net",

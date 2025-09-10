@@ -10,7 +10,8 @@
     <tr>
         <th>status</th>
         <th>estimatedSize</th>
-        <th>gpsLocation</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
     </tr>
 
     </thead>
@@ -19,21 +20,19 @@
     <tr th:each="net : ${nets}">
         <td th:text="${net.status}"></td>
         <td th:text="${net.estimatedSize}"></td>
-        <td th:text="${net.gpsLocation}"></td>
-        <td th:if="${loggedIn}">
-            <form th:action="@{/nets/edit/{id}(id=${net.id})}" method="get">
-                <button type="submit">Update this Entry</button>
-            </form>
-        </td>
-        <td th:if="${loggedIn}">
-        <td th:if="!${net.bergerId}">
-            <form th:action="@{/nets/net-rescue/{id}(id=${net.id})}" method="get">
-                <button type="submit">I sign up for the net rescue</button>
-            </form>
-            <td th:if="${net.bergerId}">
-            Somebody signed already up for the net rescue
-            </td>
-        </td>
+        <td th:text="${net.latitude}"></td>
+        <td th:text="${net.longitude}"></td>
+        <div th:if="${loggedIn}">
+            <td> <button th:action="@{/nets/edit/{id}(id=${net.id})}" type="submit"> Update this Entry </button></td>
+            <div th:if="!${net.bergerId}">
+                <form th:action="@{/nets/net-rescue/{id}(id=${net.id})}" method="get">
+                    <td>   <button type="submit">I sign up for the net rescue</button></td>
+                </form>
+            </div>
+            <div th:if="${net.bergerId}">
+                <td>   Somebody signed already up for the net rescue </td>
+            </div>
+        </div>
     </tr>
     </tbody>
 </table>

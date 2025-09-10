@@ -46,6 +46,7 @@ public class NetController {
 
         return "redirect:/nets/net-list";
     }
+    @PostMapping("/add-net")
     public String addNet(@ModelAttribute Net net) {
         int netId = netService.saveNet(net);
         System.out.println("netId: " + netId);

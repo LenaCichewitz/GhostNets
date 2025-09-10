@@ -28,12 +28,24 @@
 <div id='map' class='map'></div>
 <script th:inline="javascript">
     var map = tt.map({
-        key: [[${apikey}]], // this will be replaced by Thymeleaf at runtime
+        key: [[${apikey}]],
         container: 'map',
-        style: 'tomtom://vector/1/basic-main'
+        style: 'tomtom://vector/1/basic-main',
+        zoom: 2
     });
     map.addControl(new tt.FullscreenControl());
     map.addControl(new tt.NavigationControl());
+
+
+    var nets = /*[[${nets}]]*/ [];
+    nets.forEach(net => {
+        var latitude = net.latitude;
+        var longitude = net.longitude;
+        var marker = new tt.Marker().setLngLat([longitude, latitude]).addTo(map);
+        var popup = new tt.Popup({ offset: 25 }).setText(`Net Size: ${net.estimatedSize}`);
+        marker.setPopup(popup).togglePopup();
+    });
+
 </script>
 </body>
 </html>

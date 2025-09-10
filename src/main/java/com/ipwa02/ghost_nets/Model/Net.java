@@ -10,7 +10,8 @@ import jakarta.persistence.Id;
 public class Net {
     Statuses status;
     float estimatedSize;
-    String gpsLocation;
+    float latitude;
+    float longitude;
     int contactId;
     int bergerId;
     @Id
@@ -26,8 +27,12 @@ public class Net {
         return estimatedSize;
     }
 
-    public String getGpsLocation() {
-        return gpsLocation;
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
     }
 
     public void setBergerId(int bergerId) {
@@ -48,10 +53,6 @@ public class Net {
 
     public void setEstimatedSize(float estimatedSize) {
         this.estimatedSize = estimatedSize;
-    }
-
-    public void setGpsLocation(String gpsLocation) {
-        this.gpsLocation = gpsLocation;
     }
 
     public void setStatus(Statuses status) {

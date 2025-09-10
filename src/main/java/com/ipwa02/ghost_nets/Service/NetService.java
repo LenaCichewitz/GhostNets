@@ -42,4 +42,5 @@ public class NetService {
         net.setBergerId(user.getId());
         this.updateNet(net);
     }
+//    public
 }
