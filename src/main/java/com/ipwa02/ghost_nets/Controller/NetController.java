@@ -69,6 +69,10 @@ public class NetController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean loggedIn =auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken);
         model.addAttribute("loggedIn", loggedIn);
+        if (loggedIn) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", user);
+        }
         return "net-list";
     }
 }

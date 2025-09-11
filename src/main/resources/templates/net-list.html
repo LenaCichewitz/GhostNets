@@ -23,14 +23,23 @@
         <td th:text="${net.latitude}"></td>
         <td th:text="${net.longitude}"></td>
         <div th:if="${loggedIn}">
-            <td> <button th:action="@{/nets/edit/{id}(id=${net.id})}" type="submit"> Update this Entry </button></td>
+                <form th:action="@{/nets/edit/{id}(id=${net.id})}" method="get">
+                    <td>    <button type="submit">Update this Entry</button> </td>
+                </form>
             <div th:if="!${net.bergerId}">
                 <form th:action="@{/nets/net-rescue/{id}(id=${net.id})}" method="get">
                     <td>   <button type="submit">I sign up for the net rescue</button></td>
                 </form>
             </div>
-            <div th:if="${net.bergerId}">
-                <td>   Somebody signed already up for the net rescue </td>
+            <div th:if="${net.bergerId} == ${user.getId()}">
+                <form th:action="@{/nets/net-rescue/{id}(id=${net.id})}" method="get">
+                    <td>   <button type="submit">Net is rescued</button></td>
+                </form>
+            </div>
+            <div th:if="${net.bergerId} != ${user.getId()} ">
+                <div th:if="${net.bergerId}">
+                    <td>   Somebody signed already up for the net rescue </td>
+                </div>
             </div>
         </div>
     </tr>

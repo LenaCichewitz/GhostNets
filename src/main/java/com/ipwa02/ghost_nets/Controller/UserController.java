@@ -5,7 +5,6 @@ import com.ipwa02.ghost_nets.Model.Net;
 import com.ipwa02.ghost_nets.Model.User;
 import com.ipwa02.ghost_nets.Service.ContactService;
 import com.ipwa02.ghost_nets.Service.NetService;
-import com.ipwa02.ghost_nets.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,7 +38,6 @@ public class UserController {
     public String addContact(@ModelAttribute Contact contact, @RequestParam int netId) {
         contactService.addContact(contact);
         Net net = netService.getNetById(netId);
-        System.out.println("add contact für netz nr " + net.getId());
         netService.addContactToNet(contact, net);
         return "redirect:/nets/net-list";
     }
