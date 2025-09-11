@@ -3,6 +3,7 @@ package com.ipwa02.ghost_nets.Controller;
 import com.ipwa02.ghost_nets.Model.Net;
 import com.ipwa02.ghost_nets.Model.User;
 import com.ipwa02.ghost_nets.Service.NetService;
+import com.ipwa02.ghost_nets.Statuses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -40,10 +41,18 @@ public class NetController {
     @GetMapping("/net-rescue/{id}")
     public String setNetBerger(@PathVariable("id") int id,Model model) {
         Net net = netService.getNetById(id);
-        model.addAttribute("net", net);
+        // model.addAttribute("net", net);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         netService.setBergerForNet(user, net);
-
+        net.setStatus(Statuses.RECOVERY_PENDING);
+        netService.updateNet(net);
+        return "redirect:/nets/net-list";
+    }
+    @GetMapping("/net-recovered/{id}")
+    public String setNetRecovered(@PathVariable("id") int id,Model model) {
+        Net net = netService.getNetById(id);
+        net.setStatus(Statuses.RECOVERED);
+        netService.updateNet(net);
         return "redirect:/nets/net-list";
     }
     @PostMapping("/add-net")

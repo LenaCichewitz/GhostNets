@@ -32,7 +32,7 @@
                 </form>
             </div>
             <div th:if="${net.bergerId} == ${user.getId()}">
-                <form th:action="@{/nets/net-rescue/{id}(id=${net.id})}" method="get">
+                <form th:action="@{/nets/net-recovered/{id}(id=${net.id})}" method="get">
                     <td>   <button type="submit">Net is rescued</button></td>
                 </form>
             </div>
