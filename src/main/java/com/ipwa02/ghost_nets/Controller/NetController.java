@@ -39,7 +39,7 @@ public class NetController {
     }
 
     @GetMapping("/net-rescue/{id}")
-    public String setNetBerger(@PathVariable("id") int id,Model model) {
+    public String setNetBerger(@PathVariable("id") int id) {
         Net net = netService.getNetById(id);
         // model.addAttribute("net", net);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -49,9 +49,16 @@ public class NetController {
         return "redirect:/nets/net-list";
     }
     @GetMapping("/net-recovered/{id}")
-    public String setNetRecovered(@PathVariable("id") int id,Model model) {
+    public String setNetRecovered(@PathVariable("id") int id) {
         Net net = netService.getNetById(id);
         net.setStatus(Statuses.RECOVERED);
+        netService.updateNet(net);
+        return "redirect:/nets/net-list";
+    }
+    @GetMapping("/net-lost/{id}")
+    public String setNetLost(@PathVariable("id") int id) {
+        Net net = netService.getNetById(id);
+        net.setStatus(Statuses.LOST);
         netService.updateNet(net);
         return "redirect:/nets/net-list";
     }
@@ -59,7 +66,8 @@ public class NetController {
     public String addNet(@ModelAttribute Net net) {
         int netId = netService.saveNet(net);
         System.out.println("netId: " + netId);
-
+        System.out.println("latitude " + net.getLatitude());
+        System.out.println("longtitude " + net.getLongitude());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean loggedIn =auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken);
         System.out.println("User logged in: " + loggedIn);
@@ -68,7 +76,6 @@ public class NetController {
         } else {
             return "redirect:/users/show-contact-form/" + netId;
         }
-
     }
 
     @GetMapping("/net-list")

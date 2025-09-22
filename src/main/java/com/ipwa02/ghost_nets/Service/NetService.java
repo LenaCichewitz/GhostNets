@@ -18,7 +18,9 @@ public class NetService {
     public List<Net> getAllNets() {
         return netRepository.findAll();
     }
-
+//    public List<Net> getAllNetsWhoNotRescued() {
+//        List<Net> nets = netRepository.findTopByStatusNot
+//    }
     public List<Net> getAllNetsByUser(User user) {
         return netRepository.findAllByBergerId(user.getId());
     }
@@ -42,6 +44,4 @@ public class NetService {
         net.setBergerId(user.getId());
         this.updateNet(net);
     }
-
-//    public
 }

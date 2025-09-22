@@ -13,7 +13,6 @@
         <th>Latitude</th>
         <th>Longitude</th>
     </tr>
-
     </thead>
     <tbody>
     <tbody>
@@ -34,6 +33,9 @@
             <div th:if="${net.bergerId} == ${user.getId()}">
                 <form th:action="@{/nets/net-recovered/{id}(id=${net.id})}" method="get">
                     <td>   <button type="submit">Net is rescued</button></td>
+                </form>
+                <form th:action="@{/nets/net-lost/{id}(id=${net.id})}" method="get">
+                    <td>   <button type="submit">Net is lost</button></td>
                 </form>
             </div>
             <div th:if="${net.bergerId} != ${user.getId()} ">

@@ -5,19 +5,19 @@
 </head>
 <body>
 <h1>Add Ghost Net</h1>
+
 <form th:action="@{/nets/add-net}" th:object="${net}" method="post">
     <label for="status">Status:    </label>
-    <input id="status"
-           th:placeholder="${T(com.ipwa02.ghost_nets.Statuses).REPORTED}"
-           th:default="${T(com.ipwa02.ghost_nets.Statuses).REPORTED}"
-           th:disabled="true"
-           th:field="*{status}"/>
+    <select id="status" th:field="*{status}" th:value="${T(com.ipwa02.ghost_nets.Statuses).REPORTED}" required>
+        <option th:each="statusOpt : ${T(com.ipwa02.ghost_nets.Statuses).values()}"
+                th:value="${statusOpt}" th:text="${statusOpt}"></option>
+    </select>
     <label for="estimatedSize">Estimated Size:</label>
-    <input type="text" id="estimatedSize" th:field="*{estimatedSize}" required/>
+    <input type="number" id="estimatedSize" th:field="*{estimatedSize}" required/>
     <label for="latitude">Latitude:</label>
-    <input type="text" id="latitude" th:field="*{latitude}" required/>
+    <input type="number" id="latitude" th:field="*{latitude}" required/>
     <label for="longitude">Longitude:</label>
-    <input type="text" id="longitude" th:field="*{longitude}" required/>
+    <input type="number" id="longitude" th:field="*{longitude}" required/>
     <button type="submit">Save</button>
 </form>
 <form th:action="@{/}" method="get">

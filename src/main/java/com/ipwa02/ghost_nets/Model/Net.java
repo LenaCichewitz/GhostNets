@@ -66,4 +66,12 @@ public class Net {
     public Integer getId() {
         return id;
     }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
 }

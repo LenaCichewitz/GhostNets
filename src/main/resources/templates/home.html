@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Map</title>
         <link rel='stylesheet' type='text/css'
               href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.63.0/maps/maps.css'>
         <style>
@@ -14,12 +14,12 @@
        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.63.0/maps/maps-web.min.js'></script>
 </head>
 <body>
-<h1>Welcome to the Home Page</h1>
+<h1>Welcome to Ghost Net Homepage</h1>
 <form th:action="@{/nets/net-form}" method="get">
-    <button type="submit">Neue Form öffnen</button>
+    <button type="submit">Add Net</button>
 </form>
 <form th:action="@{/nets/net-list}" method="get">
-    <button type="submit">Liste anzeigen</button>
+    <button type="submit">Show Net List</button>
 </form>
 <form th:action="@{/users/login}" method="get">
     <button type="submit">Login</button>
@@ -42,7 +42,7 @@
         var latitude = net.latitude;
         var longitude = net.longitude;
         var marker = new tt.Marker().setLngLat([longitude, latitude]).addTo(map);
-        var popup = new tt.Popup({ offset: 25 }).setText(`Net Size: ${net.estimatedSize}`);
+        var popup = new tt.Popup({ offset: 25 }).setText(`Net Size: ${net.estimatedSize} Net Status: ${net.status}`);
         marker.setPopup(popup).togglePopup();
     });
 
