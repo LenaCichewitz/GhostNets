@@ -17,6 +17,7 @@
     <tbody>
     <tbody>
     <tr th:each="net : ${nets}">
+        <div th:if="${net.status} != ${T(com.ipwa02.ghost_nets.Statuses).RECOVERED}">
         <td th:text="${net.status}"></td>
         <td th:text="${net.estimatedSize}"></td>
         <td th:text="${net.latitude}"></td>
@@ -34,15 +35,18 @@
                 <form th:action="@{/nets/net-recovered/{id}(id=${net.id})}" method="get">
                     <td>   <button type="submit">Net is rescued</button></td>
                 </form>
+                <div th:if="${net.status} != ${T(com.ipwa02.ghost_nets.Statuses).LOST}">
                 <form th:action="@{/nets/net-lost/{id}(id=${net.id})}" method="get">
                     <td>   <button type="submit">Net is lost</button></td>
                 </form>
+                </div>
             </div>
             <div th:if="${net.bergerId} != ${user.getId()} ">
                 <div th:if="${net.bergerId}">
                     <td>   Somebody signed already up for the net rescue </td>
                 </div>
             </div>
+        </div>
         </div>
     </tr>
     </tbody>

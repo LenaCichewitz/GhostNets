@@ -10,10 +10,13 @@
     <input type="hidden" name="netId" th:value="${net.id}"/>
     <label for="name">name</label>
     <input type="text" id="name" name="name" th:field="*{name}" />
+    <p></p>
     <label for="lastname">lastname</label>
     <input type="text" id="lastname" name="lastname" th:field="*{lastname}" />
+    <p></p>
     <label for="tel">tel</label>
     <input type="tel" id="tel" name="tel" th:field="*{telephone}" />
+    <p></p>
     <button type="submit">Save</button>
 </form>
 <form th:action="@{/nets/net-list}" method="get">

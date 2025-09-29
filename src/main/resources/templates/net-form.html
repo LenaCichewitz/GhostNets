@@ -7,11 +7,6 @@
 <h1>Add Ghost Net</h1>
 
 <form th:action="@{/nets/add-net}" th:object="${net}" method="post">
-    <label for="status">Status:    </label>
-    <select id="status" th:field="*{status}" th:value="${T(com.ipwa02.ghost_nets.Statuses).REPORTED}" required>
-        <option th:each="statusOpt : ${T(com.ipwa02.ghost_nets.Statuses).values()}"
-                th:value="${statusOpt}" th:text="${statusOpt}"></option>
-    </select>
     <label for="estimatedSize">Estimated Size:</label>
     <input type="number" id="estimatedSize" th:field="*{estimatedSize}" required/>
     <label for="latitude">Latitude:</label>

@@ -41,7 +41,6 @@ public class NetController {
     @GetMapping("/net-rescue/{id}")
     public String setNetBerger(@PathVariable("id") int id) {
         Net net = netService.getNetById(id);
-        // model.addAttribute("net", net);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         netService.setBergerForNet(user, net);
         net.setStatus(Statuses.RECOVERY_PENDING);
@@ -64,10 +63,9 @@ public class NetController {
     }
     @PostMapping("/add-net")
     public String addNet(@ModelAttribute Net net) {
+        net.setStatus(Statuses.REPORTED);
         int netId = netService.saveNet(net);
-        System.out.println("netId: " + netId);
-        System.out.println("latitude " + net.getLatitude());
-        System.out.println("longtitude " + net.getLongitude());
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean loggedIn =auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken);
         System.out.println("User logged in: " + loggedIn);
