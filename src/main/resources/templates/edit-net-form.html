@@ -15,9 +15,9 @@
     <label for="estimatedSize">Estimated Size:</label>
     <input type="text" id="estimatedSize" th:field="*{estimatedSize}" required/>
     <label for="latitude">Latitude:</label>
-    <input type="number" id="latitude" th:field="*{latitude}" required/>
+    <input type="text" id="latitude" th:field="*{latitude}" required/>
     <label for="longitude">Latitude:</label>
-    <input type="number" id="longitude" th:field="*{longitude}" required/>
+    <input type="text" id="longitude" th:field="*{longitude}" required/>
     <button type="submit">Save</button>
 </form>
 <form th:action="@{/nets/net-list}" method="get">
