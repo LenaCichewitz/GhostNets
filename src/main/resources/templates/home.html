@@ -41,9 +41,11 @@
     nets.forEach(net => {
         var latitude = net.latitude;
         var longitude = net.longitude;
+        if (net.status !== /*[[${T(com.ipwa02.ghost_nets.Statuses).RECOVERED}]]*/ "RECOVERD") {
         var marker = new tt.Marker().setLngLat([longitude, latitude]).addTo(map);
-        var popup = new tt.Popup({ offset: 25 }).setText(`Net Size: ${net.estimatedSize} Net Status: ${net.status}`);
-        marker.setPopup(popup).togglePopup();
+            var popup = new tt.Popup({offset: 25}).setText(`Net Size: ${net.estimatedSize} Net Status: ${net.status}`);
+            marker.setPopup(popup).togglePopup();
+        }
     });
 
 </script>
